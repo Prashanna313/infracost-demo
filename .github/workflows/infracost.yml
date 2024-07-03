@@ -21,8 +21,6 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
 
       - name: Infracost breakdown
-        env:
-          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
           infracost breakdown --path=./terraform/ --usage-file=./terraform/infracost-usage.yml --format=json --out-file=infracost.json
 
