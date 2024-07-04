@@ -24,6 +24,7 @@ jobs:
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
+          infracost configure set api_key $INFRACOST_API_KEY
           infracost breakdown --path=./terraform/ --usage-file=./terraform/infracost-usage.yml --format=json --out-file=infracost.json
 
       - name: Infracost comment
