@@ -9,6 +9,11 @@ on:
 jobs:
   infracost:
     runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+      pull-requests: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
