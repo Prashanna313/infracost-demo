@@ -9,6 +9,11 @@ on:
 jobs:
   infracost:
     runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+      pull-requests: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,6 +29,7 @@ jobs:
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
+          infracost configure set api_key ${{ secrets.INFRACOST_API_KEY }}
           infracost breakdown --path=./terraform/ --usage-file=./terraform/infracost-usage.yml --format=json --out-file=infracost.json
 
       - name: Infracost comment
